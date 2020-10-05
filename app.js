@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     var randomPosition = getRandomShape();
     let currentPosition = 5;
-    let currentRotation = 0;
+    let currentRotation = 1;
     let currentShape = ALL_SHAPES[randomPosition][currentRotation];
 
     function draw(cP) {  
@@ -104,7 +104,16 @@ document.addEventListener("DOMContentLoaded", () => {
         draw(currentPosition);
     }
 
+    function rotate(){
+        undraw(currentPosition);
+        currentRotation++;
+        if(currentRotation === currentShape.length){
+            currentRotation = 0;
+        }
+        currentShape = ALL_SHAPES[randomPosition][currentRotation];
+        draw(currentPosition);
 
+    }
     function freeze(){
         if(currentShape.some(
             index => squares[currentPosition + index + WIDTH].classList.contains("taken")
